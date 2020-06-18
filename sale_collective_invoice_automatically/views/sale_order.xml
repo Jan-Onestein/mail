@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_order_form" model="ir.ui.view">
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='sale_info']//field[@name='invoice_status']" position="after">
+                <field name="collective_invoice"/>
+                <field name="invoice_period_type" attrs="{'required': [('collective_invoice','in',['partner','order'])], 'invisible':[('collective_invoice', 'not in', ['partner','order'])]}"/>
+                <field name="invoice_period_amount" attrs="{'required': [('collective_invoice','in',['partner','order'])], 'invisible':[('collective_invoice', 'not in', ['partner','order'])]}"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
